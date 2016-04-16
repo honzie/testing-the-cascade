@@ -1,0 +1,26 @@
+{
+  "name": "testing-the-cascade",
+  "version": "1.0.0",
+  "main": [
+    "js/reveal.js",
+    "css/reveal.css"
+  ],
+  "license": "MIT",
+  "description": "Presentation for Testing The Cascade, a talk on CSS testing techniques.",
+  "authors": [
+    "Hans Sprecher <hans.sprecher@gmail.com>"
+  ],
+  "dependencies": {
+    "headjs": "~1.0.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/honzie/testing-the-cascade.git"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test"
+  ]
+}

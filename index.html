@@ -1,369 +1,373 @@
 <!doctype html>
 <html lang="en">
 
-	<head>
-		<meta charset="utf-8">
+  <head>
+    <meta charset="utf-8">
 
-		<title>Testing The Cascade</title>
+    <title>Testing The Cascade</title>
 
-		<meta name="description" content="Presentation for Testing The Cascade, a talk on CSS testing techniques.">
-		<meta name="author" content="Hans Sprecher">
+    <meta name="description" content="Presentation for Testing The Cascade, a talk on CSS testing techniques.">
+    <meta name="author" content="Hans Sprecher">
 
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/css-testing.css" id="theme">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/css-testing.css" id="theme">
 
-		<!-- Code syntax highlighting -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
 
-	<body>
+  <body>
 
-		<div class="reveal">
+    <div class="reveal">
 
-			<!-- Any section element inside of this container is displayed as a slide -->
-			<div class="slides">
-				<section class="title" data-background="images/niagera-dry.jpg">
-					<h1>Testing the Cascade</h1>
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section class="title" data-background="images/niagera-dry.jpg">
+          <h1>Testing the Cascade</h1>
+        </section>
+
+        <section>
+          <section>
+            <h1 class="fragment visible"><img src="images/time-inc-logo-white.svg" height="150" alt="Time Inc."></h1>
+            <h4>Hans Sprecher</h4>
+            <p>
+              <small><a href="http://www.hanssprecher.com/">www.hanssprecher.com</a> | <a href="http://twitter.com/honzie">@honzie</a></small>
+            </p>
+          </section>
+
+          <section>
+            <h1 class="u-nowrap">
+              <span><img src="images/time-logo-white.svg" height="150" alt="TIME"></span>
+              <span class="fragment visible"><img src="images/life-logo.png" height="150" alt="LIFE"></span>
+              <span class="fragment visible"><img src="images/people-logo.png" height="150" alt="People"></span>
+            </h1>
+          </section>
+
+          <section>
+            <h1><img src="images/horse-and-hound-logo-white.png" height="100" alt="Horse &amp; Hound"></h1>
+          </section>
+
+          <section>
+            <h1><img src="images/amazon-smile.png" height="125" alt="Amazon"></h1>
+          </section>
+        </section>
+
+        <section>
+          <img src="images/mozilla-page.gif" height="500">
+          <p><small>ca. 1999, from www.mozillazine.org</small></p>
+          <!-- TK: Page Sound -->
+        </section>
+
+        <section data-background="images/pager.jpg">
+        </section>
+
+        <section data-background="images/app-demo.png">
+        </section>
+
+        <section>
+          <section>
+            <h1>Utility Classes</h1>
+            <code>
+  <pre>
+  .none {
+    display: none;
+  }
+
+  .left {
+    float: left;
+  }
+
+  .right {
+    float: right;
+  }
+  </pre>
+            </code>
+          </section>
+
+          <section>
+            <h1>Was <code>.left</code> used?</h1>
+          </section>
+
+          <section data-background="images/google.png">
+          </section>
+
+          <section data-background="images/no-results-found.png" data-background-position="left top" data-background-transition="none">
+          </section>
+
+          <section>
+            <h1>Comprehensive?</h1>
+            <h2 class="fragment visible">No.</h2>
+            <ul>
+              <li class="fragment visible">Could exist in HTML</li>
+              <li class="fragment visible">Could exist in JS</li>
+              <li class="fragment visible">Programmatically constructed</li>
+              <li class="fragment visible">Returned from AJAX injection</li>
+            </ul>
+          </section>
+
 				</section>
-
 				<section>
-					<section>
-						<h1 class="fragment visible"><img src="images/time-inc-logo-white.svg" height="150" alt="Time Inc."></h1>
-						<h4>Hans Sprecher</h4>
-						<p>
-							<small><a href="http://www.hanssprecher.com/">www.hanssprecher.com</a> | <a href="http://twitter.com/honzie">@honzie</a></small>
-						</p>
-					</section>
 
-					<section>
-						<h1 class="u-nowrap">
-							<span><img src="images/time-logo-white.svg" height="150" alt="TIME"></span>
-							<span class="fragment visible"><img src="images/life-logo.png" height="150" alt="LIFE"></span>
-							<span class="fragment visible"><img src="images/people-logo.png" height="150" alt="People"></span>
-						</h1>
-					</section>
+	        <section data-background="images/app-demo-working.png">
+	        </section>
 
-					<section>
-						<h1><img src="images/horse-and-hound-logo-white.png" height="100" alt="Horse &amp; Hound"></h1>
-					</section>
+	        <section data-background="images/app-demo-broken.png" data-background-transition="none">
+	        </section>
 
-					<section>
-						<h1><img src="images/amazon-smile.png" height="125" alt="Amazon"></h1>
-					</section>
-				</section>
+	        <section class="inverse" data-background="images/no-results-found.png" data-background-position="left top">
+	          <h2 class="note">
+	            <br /><br /><br /><br /><br /><br />
+	            * Not showing 1 result
+	          </h2>
+	        </section>
+        </section>
 
-				<section>
-					(TK: Netscape navigator)
-					(TK: Page Sound)
-				</section>
+        <section>
+          <section>
+            <h1>Avoiding this.</h1>
+          </section>
 
-				<section>
-					(TK: Pager Image)
-				</section>
+          <section>
+            <h1>I</h1>
+            <h2>Namespacing Classes</h2>
+            <aside class="notes">
+              By namespacing our classes, we limit the influence of our classes. However, there are two limitations here. The first is that this removes some of our ability to fully use the cascade, limiting CSS' effectiveness—and code re-use. The second, and potentially more serious, is that namespace collisions can occur.
+            </aside>
+          </section>
 
-				<section>
-					(TK: Image of app)
-				</section>
+          <section>
+            <h1>II</h1>
+            <h2>Scoping CSS</h2>
+            <aside class="notes">
+              There are two ways to strictly scope CSS. (1) Load only on pages that need it. Downside: extra HTTP requests, doesn't work well for pages with multiple teams contributing to it. (2) Use technology that strictly sandboxes CSS, like React or Web Components. (Check on web components).
+            </aside>
+          </section>
 
-				<section>
-					<h1>Utility Classes</h1>
-					<code>
-<pre>
-.none {
-  display: none;
-}
+          <section>
+            <h1>III</h1>
+            <h2>Testing</h2>
+            <aside class="notes">
+              Automatically looking at our CSS to see if it fulfills our needs. This is what I want to focus on today.
+            </aside>
+          </section>
+        </section>
 
-.left {
-  float: left;
-}
+        <section>
+          <section>
+            <h1>Why?</h1>
+            <h2>CSS is Declarative.</h2>
 
-.right {
-  float: right;
-}
-</pre>
-					</code>
-				</section>
+            <aside class="notes">
+              Don't forget down. Declaration of CSS.
+            </aside>
+          </section>
 
-				<section>
-					<section>
-						<h1>Was <code>.left</code> used?</h1>
-					</section>
+          <section>
+            <blockquote>
+              4 Scope &amp;<br />
+              CSS years ago.
+            </blockquote>
+          </section>
+        </section>
 
-					<section data-background="images/google.png">
-					</section>
+        <section>
+          <h1>That's not how we write CSS.</h1>
 
-					<section data-background="images/no-results-found.png" data-background-position="left top" data-background-transition="none">
-					</section>
+          <aside class="notes">
+            By this, I don't mean writing a Declaration of CSS and another Hamilton musical. There's a difference between how we write CSS in practice and how we go about understanding how to represent a design in CSS.
+          </aside>
+        </section>
 
-					<section>
-						<h1>Comprehensive?</h1>
-						<h2 class="fragment visible">No.</h2>
-						<ul>
-							<li class="fragment visible">Could exist in HTML</li>
-							<li class="fragment visible">Could exist in JS</li>
-							<li class="fragment visible">Programmatically constructed</li>
-							<li class="fragment visible">Returned from AJAX injection</li>
-						</ul>
-					</section>
-				</section>
+        <section>
+          <section>
+            <h1>Declaring Each Property</h1>
+            <h2 class="fragment visible">No Cascade</h2>
+            <h2 class="fragment visible">Only Override Defaults</h2>
+          </section>
 
-				<section>
-					(TK: Broken App)
-				</section>
+          <section>
+            <h1>Amazon</h1>
+            (TK: screenshot, result)
+          </section>
 
-				<section class="inverse" data-background="images/no-results-found.png" data-background-position="left top">
-					<h2 class="note">
-						<br /><br /><br /><br /><br /><br />
-						* Not showing 1 result
-					</h2>
-				</section>
+          <section>
+            <h1>Facebook Wall</h1>
+            (TK: screenshot, result)
+          </section>
 
-				<section>
-					<section>
-						<h1>Avoiding this.</h1>
-					</section>
+          <section>
+            <h1>Time</h1>
+            (TK: screenshot, result)
+          </section>
 
-					<section>
-						<h1>I</h1>
-						<h2>Namespacing Classes</h2>
-						<aside class="notes">
-							By namespacing our classes, we limit the influence of our classes. However, there are two limitations here. The first is that this removes some of our ability to fully use the cascade, limiting CSS' effectiveness—and code re-use. The second, and potentially more serious, is that namespace collisions can occur.
-						</aside>
-					</section>
+          <section>
+            <h1>Bootstrap Components</h1>
+            (TK: screenshot, result)
+          </section>
 
-					<section>
-						<h1>II</h1>
-						<h2>Scoping CSS</h2>
-						<aside class="notes">
-							There are two ways to strictly scope CSS. (1) Load only on pages that need it. Downside: extra HTTP requests, doesn't work well for pages with multiple teams contributing to it. (2) Use technology that strictly sandboxes CSS, like React or Web Components. (Check on web components).
-						</aside>
-					</section>
+          <section>
+            <h1>A List Apart</h1>
+            (TK: screenshot, result)
+          </section>
 
-					<section>
-						<h1>III</h1>
-						<h2>Testing</h2>
-						<aside class="notes">
-							Automatically looking at our CSS to see if it fulfills our needs. This is what I want to focus on today.
-						</aside>
-					</section>
-				</section>
+          <section>
+            <h1>Overall: (TK average)</h1>
+            <table>
+              <thead>
+                <tr>
+                  <th>Brand</th>
+                  <th>Increase</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Amazon</td>
+                  <td>TK</td>
+                </tr>
+                <tr>
+                  <td>Facebook</td>
+                  <td>TK</td>
+                </tr>
+                <tr>
+                  <td>Time</td>
+                  <td>TK</td>
+                </tr>
+                <tr>
+                  <td>Bootstrap</td>
+                  <td>TK</td>
+                </tr>
+                <tr>
+                  <td>A List Apart</td>
+                  <td>TK</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+        </section>
 
-				<section>
-					<section>
-						<h1>Why?</h1>
-						<h2>CSS is Declarative.</h2>
+        <section>
+          <section>
+            <h1>Great CSS Captures Design</h1>
+          </section>
 
-						<aside class="notes">
-							Don't forget down. Declaration of CSS.
-						</aside>
-					</section>
+          <section>
+            <h1><del>Great</del> Good CSS Captures Design</h1>
+          </section>
+        </section>
 
-					<section>
-						<blockquote>
-							4 Scope &amp;<br />
-							CSS years ago.
-						</blockquote>
-					</section>
-				</section>
+        <section>
+          (TK: Header example)
 
-				<section>
-					<h1>That's not how we write CSS.</h1>
+          <aside class="notes">
+            <p>Consider a bare-bones header, with a logo, horizontal navigation, and some tool links in the upper right hand corner.</p>
+            <p>Let's imagine that the navigation font size changes. It gets a bit bigger. Should the tool links become larger? Should they remain the same size? Assuming that the navigation font size is applied to the header, the answer could be the difference between using <code>em</code> and <code>rem</code> units.</p>
+          </aside>
+        </section>
 
-					<aside class="notes">
-						By this, I don't mean writing a Declaration of CSS and another Hamilton musical. There's a difference between how we write CSS in practice and how we go about understanding how to represent a design in CSS.
-					</aside>
-				</section>
+        <section>
+          (TK: DW, Frontpage logos)
 
-				<section>
-					<section>
-						<h1>Declaring Each Property</h1>
-						<h2 class="fragment visible">No Cascade</h2>
-						<h2 class="fragment visible">Only Override Defaults</h2>
-					</section>
+          <aside class="notes">
+            <p>If there were limited value to well-written CSS, these tools would have worked significantly better.</p>
+          </aside>
+        </section>
 
-					<section>
-						<h1>Amazon</h1>
-						(TK: screenshot, result)
-					</section>
+        <section>
+          (TK: Craftsman image)
 
-					<section>
-						<h1>Facebook Wall</h1>
-						(TK: screenshot, result)
-					</section>
+          <aside class="notes">
+            <p>CSS is crafted. It is opinionated. The browser defaults have opinions about reading content. Responsive design and table-based designs were also opinionated about the fundamental design direction of the web. Frameworks and themes have opinions. Bootstrap has opinions.</p>
+          </aside>
+        </section>
 
-					<section>
-						<h1>Time</h1>
-						(TK: screenshot, result)
-					</section>
+        <section>
+          (TK: Eames Lounge Chair)
+          (TK: Link to material honesty and web)
 
-					<section>
-						<h1>Bootstrap Components</h1>
-						(TK: screenshot, result)
-					</section>
+          <aside class="notes">
+            <p>These opinions give CSS its grain. As one of three languages we work with in the browser, this grain defines the material of the web.</p>
+            <p>Like other designed objects, the best results are often derived when the work is materially honest—honest to the medium it is crafted in. My favorite example is the Eames lounge chair, which is as close to the platonic ideal of a lounge chair as—well—as we'll get.</p>
+            <p>The lounge chair works because of its honesty with its materials. Using bent plywood and down-stuffed leather.</p>
+          </aside>
+        </section>
 
-					<section>
-						<h1>A List Apart</h1>
-						(TK: screenshot, result)
-					</section>
+        <section>
+          <section>
+            <h1>How?</h1>
 
-					<section>
-						<h1>Overall: (TK average)</h1>
-						<table>
-							<thead>
-								<tr>
-									<th>Brand</th>
-									<th>Increase</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Amazon</td>
-									<td>TK</td>
-								</tr>
-								<tr>
-									<td>Facebook</td>
-									<td>TK</td>
-								</tr>
-								<tr>
-									<td>Time</td>
-									<td>TK</td>
-								</tr>
-								<tr>
-									<td>Bootstrap</td>
-									<td>TK</td>
-								</tr>
-								<tr>
-									<td>A List Apart</td>
-									<td>TK</td>
-								</tr>
-							</tbody>
-						</table>
-					</section>
-				</section>
+            <aside class="notes">
+              <p>But I digress. <em>How</em> can we test CSS? Let's apply three common types of sofware testing.</p>
+            </aside>
+          </section>
 
-				<section>
-					<section>
-						<h1>Great CSS Captures Design</h1>
-					</section>
+          <section>
+            <h1>Unit</h1>
+            <h2>Does it work?</h2>
+          </section>
 
-					<section>
-						<h1><del>Great</del> Good CSS Captures Design</h1>
-					</section>
-				</section>
+          <section>
+            <h1>Integration</h1>
+            <h2>Does it play nice?</h2>
+          </section>
 
-				<section>
-					(TK: Header example)
+          <section>
+            <h1>Regression</h1>
+            <h2>Did it break?</h2>
+          </section>
+        </section>
 
-					<aside class="notes">
-						<p>Consider a bare-bones header, with a logo, horizontal navigation, and some tool links in the upper right hand corner.</p>
-						<p>Let's imagine that the navigation font size changes. It gets a bit bigger. Should the tool links become larger? Should they remain the same size? Assuming that the navigation font size is applied to the header, the answer could be the difference between using <code>em</code> and <code>rem</code> units.</p>
-					</aside>
-				</section>
+        <section data-background="#ddd6d0">
+          <h1>Unit</h1>
+        </section>
 
-				<section>
-					(TK: DW, Frontpage logos)
+        <section>
+          <h1>Plain Demo</h1>
+          <h2 class="fragment visible">Shopping is hard. Let's write CSS.</h2>
+        </section>
 
-					<aside class="notes">
-						<p>If there were limited value to well-written CSS, these tools would have worked significantly better.</p>
-					</aside>
-				</section>
+        <section>
+          <h1>Framework Demo</h1>
+          <h2 class="fragment visible">More realistic complexity.</h2>
+        </section>
 
-				<section>
-					(TK: Craftsman image)
+        <section>
+          <h1>Two Declarations</h1>
 
-					<aside class="notes">
-						<p>CSS is crafted. It is opinionated. The browser defaults have opinions about reading content. Responsive design and table-based designs were also opinionated about the fundamental design direction of the web. Frameworks and themes have opinions. Bootstrap has opinions.</p>
-					</aside>
-				</section>
+          <ul>
+            <li class="fragment visible">As Designed</li>
+            <li class="fragment visible">As Written</li>
+          </ul>
+        </section>
 
-				<section>
-					(TK: Eames Lounge Chair)
-					(TK: Link to material honesty and web)
+        <section>
+          <section>
+            <h1>Unit Isolation</h1>
+            (TK: Buy box screenshot)
 
-					<aside class="notes">
-						<p>These opinions give CSS its grain. As one of three languages we work with in the browser, this grain defines the material of the web.</p>
-						<p>Like other designed objects, the best results are often derived when the work is materially honest—honest to the medium it is crafted in. My favorite example is the Eames lounge chair, which is as close to the platonic ideal of a lounge chair as—well—as we'll get.</p>
-						<p>The lounge chair works because of its honesty with its materials. Using bent plywood and down-stuffed leather.</p>
-					</aside>
-				</section>
+            <aside class="notes">
+              <p>But how can we ensure the test only probes a 'unit' of code? CSS can be deep and complex.</p>
+              <p>We can render a page with only a block on it.</p>
+            </aside>
+          </section>
 
-				<section>
-					<section>
-						<h1>How?</h1>
+          <section>
+            <h1>Unit Test Layout</h1>
 
-						<aside class="notes">
-							<p>But I digress. <em>How</em> can we test CSS? Let's apply three common types of sofware testing.</p>
-						</aside>
-					</section>
-
-					<section>
-						<h1>Unit</h1>
-						<h2>Does it work?</h2>
-					</section>
-
-					<section>
-						<h1>Integration</h1>
-						<h2>Does it play nice?</h2>
-					</section>
-
-					<section>
-						<h1>Regression</h1>
-						<h2>Did it break?</h2>
-					</section>
-				</section>
-
-				<section data-background="#ddd6d0">
-					<h1>Unit</h1>
-				</section>
-
-				<section>
-					<h1>Plain Demo</h1>
-					<h2 class="fragment visible">Shopping is hard. Let's write CSS.</h2>
-				</section>
-
-				<section>
-					<h1>Framework Demo</h1>
-					<h2 class="fragment visible">More realistic complexity.</h2>
-				</section>
-
-				<section>
-					<h1>Two Declarations</h1>
-
-					<ul>
-						<li class="fragment visible">As Designed</li>
-						<li class="fragment visible">As Written</li>
-					</ul>
-				</section>
-
-				<section>
-					<section>
-						<h1>Unit Isolation</h1>
-						(TK: Buy box screenshot)
-
-						<aside class="notes">
-							<p>But how can we ensure the test only probes a 'unit' of code? CSS can be deep and complex.</p>
-							<p>We can render a page with only a block on it.</p>
-						</aside>
-					</section>
-
-					<section>
-						<h1>Unit Test Layout</h1>
-
-						<code>
+            <code>
 <pre>
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -380,12 +384,12 @@
   &lt;/body&gt;</span>
 &lt;/html&gt;
 </pre>
-						</code>
-					</section>
+            </code>
+          </section>
 
-					<section>
-						<h1>Isolating Styles</h1>
-						<code>
+          <section>
+            <h1>Isolating Styles</h1>
+            <code>
 <pre>
 index.styl:
 <span class="fragment visible">@require 'header'
@@ -394,36 +398,36 @@ index.styl:
 <span class="fragment visible">&gt; stylus header/index.styl --out ./header.css</span>
 <span class="fragment visible">&gt; stylus article/index.styl --out ./article.css</span>
 </pre>
-						</code>
-					</section>
-				</section>
+            </code>
+          </section>
+        </section>
 
-				<section>
-					<h1>Relative Styles</h1>
-					(TK: Two boxes with a space between them)
-				</section>
+        <section>
+          <h1>Relative Styles</h1>
+          (TK: Two boxes with a space between them)
+        </section>
 
-				<section>
-					<h1>Unit Tools</h1>
-					<ul>
-						<li class="fragment visible">Quixote</li>
-						<li class="fragment visible">Hardy</li>
-						<li class="fragment visible">CSS U</li>
-						<li class="fragment visible">Selenium (TK: spelling)</li>
-					</ul>
-				</section>
+        <section>
+          <h1>Unit Tools</h1>
+          <ul>
+            <li class="fragment visible">Quixote</li>
+            <li class="fragment visible">Hardy</li>
+            <li class="fragment visible">CSS U</li>
+            <li class="fragment visible">Selenium (TK: spelling)</li>
+          </ul>
+        </section>
 
-				<section data-background="#ddd6d0">
-					<h1>Integration</h1>
-				</section>
+        <section data-background="#ddd6d0">
+          <h1>Integration</h1>
+        </section>
 
-				<section>
-					(TK: American Homepage, before redesign)
-				</section>
+        <section>
+          (TK: American Homepage, before redesign)
+        </section>
 
-				<section>
-					<h1>Run All Tests</h1>
-					<code>
+        <section>
+          <h1>Run All Tests</h1>
+          <code>
 <pre>
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -436,236 +440,242 @@ index.styl:
   &lt;/body&gt;</span>
 &lt;/html&gt;
 </pre>
-					</code>
-				</section>
+          </code>
+        </section>
 
-				<section>
-					<h1>Benefits</h1>
-					<ul>
-						<li class="fragment visible">Catches overly broad changes</li>
-						<li class="fragment visible">Increases confidence in refactors</li>
-					</ul>
-				</section>
+        <section>
+          <h1>Benefits</h1>
+          <ul>
+            <li class="fragment visible">Catches overly broad changes</li>
+            <li class="fragment visible">Increases confidence in refactors</li>
+          </ul>
+        </section>
 
-				<section>
-					(TK: Champagne cascade)
+        <section>
+          (TK: Champagne cascade)
 
-					<aside class="notes">
-						<p>This is a technical explanation of how refactoring CSS works.</p>
-						<p>If everything is balanced correctly, the Dom will cascade from the top to the bottom.</p>
-					</aside>
-				</section>
+          <aside class="notes">
+            <p>This is a technical explanation of how refactoring CSS works.</p>
+            <p>If everything is balanced correctly, the Dom will cascade from the top to the bottom.</p>
+          </aside>
+        </section>
 
-				<section data-background="#ddd6d0">
-					<h1>Regression</h1>
-				</section>
+        <section data-background="#ddd6d0">
+          <h1>Regression</h1>
+        </section>
 
-				<section>
-					(TK: Pulling out table clotch)
+        <section>
+          (TK: Pulling out table clotch)
 
-					<aside class="notes">
-						<p>This is a technical explanation of how deploying CSS feels.</p>
-						<p>The flowers are still standing!</p>
-					</aside>
-				</section>
+          <aside class="notes">
+            <p>This is a technical explanation of how deploying CSS feels.</p>
+            <p>The flowers are still standing!</p>
+          </aside>
+        </section>
 
-				<section>
-					<h1>Frozen DOM</h1>
-					(TK: Olaf)
+        <section>
+          <h1>Frozen DOM</h1>
+          (TK: Olaf)
 
-					<aside class="notes">
-						<p>I've been waiting a yaer to use this slide.</p>
-						<p>Seriously. Let's stick with DOM computations for a moment, assuming a frozen snapshot of the DOM.</p>
-					</aside>
-				</section>
+          <aside class="notes">
+            <p>I've been waiting a yaer to use this slide.</p>
+            <p>Seriously. Let's stick with DOM computations for a moment, assuming a frozen snapshot of the DOM.</p>
+          </aside>
+        </section>
 
-				<section>
-					<section>
-						(TK, Amazon Facebook Time percentages)
-					</section>
+        <section>
+          <section>
+            (TK, Amazon Facebook Time percentages)
+          </section>
 
-					<section>
-						<h1>TeCSSt Output</h1>
-						(TK: Output from TeCCSt)
-					</section>
+          <section>
+            <h1>TeCSSt Output</h1>
+            (TK: Output from TeCCSt)
+          </section>
 
-					<section>
-						<h1>Hashed Output</h1>
-						(TK: hashed output)
-					</section>
+          <section>
+            <h1>Hashed Output</h1>
+            (TK: hashed output)
+          </section>
 
-					<section>
-						<h1>Output Diff</h1>
-						(TK: show diff)
-					</section>
+          <section>
+            <h1>Output Diff</h1>
+            (TK: show diff)
+          </section>
 
-					<section>
-						<h1>Reference Snapshot</h1>
-						<ul>
-							<li class="fragment visible">Define canonical snapshot</li>
-							<li class="fragment visible">Compute styles from Frozen DOM</li>
-							<li class="fragment visible">Display diff</li>
-							<li class="fragment visible">Define new snapshot</li>
-						</ul>
-					</section>
-				</section>
+          <section>
+            <h1>Reference Snapshot</h1>
+            <ul>
+              <li class="fragment visible">Define canonical snapshot</li>
+              <li class="fragment visible">Compute styles from Frozen DOM</li>
+              <li class="fragment visible">Display diff</li>
+              <li class="fragment visible">Define new snapshot</li>
+            </ul>
+          </section>
+        </section>
 
-				<section>
-					(TK: Selenium screenshot)
-				</section>
+        <section>
+          (TK: Selenium screenshot)
+        </section>
 
-				<section>
-					<h1>Regression Tools</h1>
-					<ul>
-						<li class="fragment visible">TeCCSt</li>
-						<li class="fragment visible">Selenium</li>
-						<li class="fragment visible">Quixote</li>
-					</ul>
-				</section>
+        <section>
+          <h1>Regression Tools</h1>
+          <ul>
+            <li class="fragment visible">TeCCSt</li>
+            <li class="fragment visible">Selenium</li>
+            <li class="fragment visible">Quixote</li>
+          </ul>
+        </section>
 
-				<section>
-					<h1>Image Diff</h1>
-					(TK: Find the difference comic)
-				</section>
+        <section>
+          <h1>Image Diff</h1>
+          (TK: Find the difference comic)
+        </section>
 
-				<section>
-					<section>
-						(TK: Two side by side pages)
-					</section>
+        <section>
+          <section>
+            (TK: Two side by side pages)
+          </section>
 
-					<section>
-						(TK: Combined with Wraith)
-					</section>
-				</section>
+          <section>
+            (TK: Combined with Wraith)
+          </section>
+        </section>
 
-				<section>
-					<h1>Wraith</h1>
-					(TK: link to Wraith)
-				</section>
+        <section>
+          <h1>Wraith</h1>
+          (TK: link to Wraith)
+        </section>
 
-				<section>
-					(TK: Demo Wraith)
-				</section>
+        <section>
+          (TK: Demo Wraith)
+        </section>
 
-				<section>
-					(TK: Aliased 'Aa')
-				</section>
+        <section>
+          (TK: Aliased 'Aa')
+        </section>
 
-				<section>
-					<h1>Image Regression Tools</h1>
-					<ul>
-						<li class="fragment visible">Wraith</li>
-						<li class="fragment visible">Selenium</li>
-					</ul>
-				</section>
+        <section>
+          <h1>Image Regression Tools</h1>
+          <ul>
+            <li class="fragment visible">Wraith</li>
+            <li class="fragment visible">Selenium</li>
+          </ul>
+        </section>
 
-				<section data-background="#ddd6d0">
-					<h1>What to Test?</h1>
-				</section>
+        <section data-background="#ddd6d0">
+          <h1>What to Test?</h1>
+        </section>
 
-				<section>
-					<p>Bugs: Gotta Catch them All</p>
-					(TK: bug in amber)
-				</section>
+        <section>
+          <p>Bugs: Gotta Catch them All</p>
+          (TK: bug in amber)
+        </section>
 
-				<section>
-					<h1>Important Components</h1>
-					<ul>
-						<li class="fragment visible">Navigation</li>
-						<li class="fragment visible">Purchase flow</li>
-						<li class="fragment visible">Hero images</li>
-					</ul>
-				</section>
+        <section>
+          <h1>Important Components</h1>
+          <ul>
+            <li class="fragment visible">Navigation</li>
+            <li class="fragment visible">Purchase flow</li>
+            <li class="fragment visible">Hero images</li>
+          </ul>
+        </section>
 
-				<section data-background="#ddd6d0">
-					<h1>Avoiding Testing</h1>
-				</section>
+        <section data-background="#ddd6d0">
+          <h1>Avoiding Testing</h1>
+        </section>
 
-				<section>
-					(TK: Sandbox)
-				</section>
+        <section>
+          (TK: Sandbox)
+        </section>
 
-				<section>
-					<h1>Static Analysis</h1>
-					<ul>
-						<li class="fragment visible">CSS Lint</li>
-						<li class="fragment visible">Style Stats</li>
-					</ul>
-				</section>
+        <section>
+          <h1>Static Analysis</h1>
+          <ul>
+            <li class="fragment visible">CSS Lint</li>
+            <li class="fragment visible">Style Stats</li>
+          </ul>
+        </section>
 
-				<section>
-					<h1>Naming Philosophies</h1>
-					<ul>
-						<li class="fragment visible">Flat specificity frameworks</li>
-						<li class="fragment visible">OOCSS</li>
-						<li class="fragment visible">BEM</li>
-					</ul>
-				</section>
+        <section>
+          <h1>Naming Philosophies</h1>
+          <ul>
+            <li class="fragment visible">Flat specificity frameworks</li>
+            <li class="fragment visible">OOCSS</li>
+            <li class="fragment visible">BEM</li>
+          </ul>
+        </section>
 
-				<section>
-					<h1>Class Prefixes</h1>
-					<ul>
-						<li class="fragment visible"><code>.u-</code>: Utility</li>
-						<li class="fragment visible"><code>.js-</code>: JS hook</li>
-						<li class="fragment visible"><code>.qa-</code>: QA or test hook</li>
-						<li class="fragment visible"><code>._h-</code>: Hack</li>
-					</ul>
-				</section>
+        <section>
+          <h1>Class Prefixes</h1>
+          <ul>
+            <li class="fragment visible"><code>.u-</code>: Utility</li>
+            <li class="fragment visible"><code>.js-</code>: JS hook</li>
+            <li class="fragment visible"><code>.qa-</code>: QA or test hook</li>
+            <li class="fragment visible"><code>._h-</code>: Hack</li>
+          </ul>
+        </section>
 
-				<section data-background="#ddd6d0">
-					<h1>Confident CSS</h1>
-				</section>
+        <section data-background="#ddd6d0">
+          <h1>Confident CSS</h1>
+        </section>
 
-				<section>
-					<h1>CSS Testing</h1>
-					<ul>
-						<li class="fragment visible">Declarative languages need tests</li>
-						<li class="fragment visible">Unit</li>
-						<li class="fragment visible">Integration</li>
-						<li class="fragment visible">Regression</li>
-						<li class="fragment visible">What to test</li>
-						<li class="fragment visible">How not to test</li>
-					</ul>
-				</section>
+        <section>
+          <h1>CSS Testing</h1>
+          <ul>
+            <li class="fragment visible">Declarative languages need tests</li>
+            <li class="fragment visible">Unit</li>
+            <li class="fragment visible">Integration</li>
+            <li class="fragment visible">Regression</li>
+            <li class="fragment visible">What to test</li>
+            <li class="fragment visible">How not to test</li>
+          </ul>
+        </section>
 
-				<section class="title" data-background="images/niagera-water.jpg">
-					<h1>Testing the Cascade</h1>
-				</section>
+        <section class="title" data-background="images/niagera-water.jpg">
+          <h1>Testing the Cascade</h1>
+        </section>
 
-				<section class="title" data-background="images/niagera-dry.jpg" data-background-transition="none">
-				</section>
-			</div>
+        <section class="title" data-background="images/niagera-dry.jpg" data-background-transition="none">
+        </section>
+      </div>
 
-		</div>
+    </div>
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
 
-		<script>
+    <script>
 
-			// Full list of configuration options available at:
-			// https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				center: true,
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
 
-				transition: 'slide', // none/fade/slide/convex/concave/zoom
-				backgroundTransition: 'concave',
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 960,
+        height: 600,
 
-				// Optional reveal.js plugins
-				dependencies: [
-					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: 'plugin/zoom-js/zoom.js', async: true },
-					{ src: 'plugin/notes/notes.js', async: true }
-				]
-			});
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        backgroundTransition: 'concave',
 
-		</script>
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+          { src: 'plugin/notes/notes.js', async: true }
+        ]
+      });
 
-	</body>
+    </script>
+
+  </body>
 </html>

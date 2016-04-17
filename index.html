@@ -131,37 +131,39 @@
 				</section>
 
 				<section>
-					<h1>Avoiding this.</h1>
-				</section>
+					<section>
+						<h1>Avoiding this.</h1>
+					</section>
 
-				<section>
-					<h1>I</h1>
-					<h2>Namespacing Classes</h2>
-					<aside class="notes">
-						By namespacing our classes, we limit the influence of our classes. However, there are two limitations here. The first is that this removes some of our ability to fully use the cascade, limiting CSS' effectiveness—and code re-use. The second, and potentially more serious, is that namespace collisions can occur.
-					</aside>
-				</section>
+					<section>
+						<h1>I</h1>
+						<h2>Namespacing Classes</h2>
+						<aside class="notes">
+							By namespacing our classes, we limit the influence of our classes. However, there are two limitations here. The first is that this removes some of our ability to fully use the cascade, limiting CSS' effectiveness—and code re-use. The second, and potentially more serious, is that namespace collisions can occur.
+						</aside>
+					</section>
 
-				<section>
-					<h1>II</h1>
-					<h2>Scoping CSS</h2>
-					<aside class="notes">
-						There are two ways to strictly scope CSS. (1) Load only on pages that need it. Downside: extra HTTP requests, doesn't work well for pages with multiple teams contributing to it. (2) Use technology that strictly sandboxes CSS, like React or Web Components. (Check on web components).
-					</aside>
-				</section>
+					<section>
+						<h1>II</h1>
+						<h2>Scoping CSS</h2>
+						<aside class="notes">
+							There are two ways to strictly scope CSS. (1) Load only on pages that need it. Downside: extra HTTP requests, doesn't work well for pages with multiple teams contributing to it. (2) Use technology that strictly sandboxes CSS, like React or Web Components. (Check on web components).
+						</aside>
+					</section>
 
-				<section>
-					<h1>III</h1>
-					<h2>Testing</h2>
-					<aside class="notes">
-						Automatically looking at our CSS to see if it fulfills our needs. This is what I want to focus on today.
-					</aside>
+					<section>
+						<h1>III</h1>
+						<h2>Testing</h2>
+						<aside class="notes">
+							Automatically looking at our CSS to see if it fulfills our needs. This is what I want to focus on today.
+						</aside>
+					</section>
 				</section>
 
 				<section>
 					<section>
 						<h1>Why?</h1>
-						<h2 class="fragment visible">CSS is Declarative.</h2>
+						<h2>CSS is Declarative.</h2>
 
 						<aside class="notes">
 							Don't forget down. Declaration of CSS.
@@ -299,10 +301,7 @@
 
 				<section>
 					<section>
-						<h1>How</h1>
-						<h2 class="fragment visible">Unit</h2>
-						<h2 class="fragment visible">Integration</h2>
-						<h2 class="fragment visible">Regression</h2>
+						<h1>How?</h1>
 
 						<aside class="notes">
 							<p>But I digress. <em>How</em> can we test CSS? Let's apply three common types of sofware testing.</p>
@@ -325,7 +324,7 @@
 					</section>
 				</section>
 
-				<section>
+				<section data-background="#ddd6d0">
 					<h1>Unit</h1>
 				</section>
 
@@ -346,6 +345,126 @@
 						<li class="fragment visible">As Designed</li>
 						<li class="fragment visible">As Written</li>
 					</ul>
+				</section>
+
+				<section>
+					<section>
+						<h1>Unit Isolation</h1>
+						(TK: Buy box screenshot)
+
+						<aside class="notes">
+							<p>But how can we ensure the test only probes a 'unit' of code? CSS can be deep and complex.</p>
+							<p>We can render a page with only a block on it.</p>
+						</aside>
+					</section>
+
+					<section>
+						<h1>Unit Test Layout</h1>
+
+						<code>
+<pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+<span class="fragment visible">  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;Unit Test Layout&lt;/title&gt;
+    <span class="fragment visible">&lt;link rel="stylesheet" href="site-defaults.css"&gt;</span>
+    <span class="fragment visible">{block-styles}</span>
+  &lt;/head&gt;
+</span><span class="fragment visible">
+  &lt;body&gt;
+    <span class="fragment visible">{block}</span>
+    <span class="fragment visible">{block-test-scripts}</span>
+  &lt;/body&gt;</span>
+&lt;/html&gt;
+</pre>
+						</code>
+					</section>
+
+					<section>
+						<h1>Isolating Styles</h1>
+						<code>
+<pre>
+index.styl:
+<span class="fragment visible">@require 'header'
+@require 'article'</span>
+
+<span class="fragment visible">&gt; stylus header/index.styl --out ./header.css</span>
+<span class="fragment visible">&gt; stylus article/index.styl --out ./article.css</span>
+</pre>
+						</code>
+					</section>
+				</section>
+
+				<section>
+					<h1>Relative Styles</h1>
+					(TK: Two boxes with a space between them)
+				</section>
+
+				<section>
+					<h1>Unit Tools</h1>
+					<ul>
+						<li class="fragment visible">Quixote</li>
+						<li class="fragment visible">Hardy</li>
+						<li class="fragment visible">CSS U</li>
+						<li class="fragment visible">Selenium (TK: spelling)</li>
+					</ul>
+				</section>
+
+				<section data-background="#ddd6d0">
+					<h1>Integration</h1>
+				</section>
+
+				<section>
+					(TK: American Homepage, before redesign)
+				</section>
+
+				<section>
+					<h1>Run All Tests</h1>
+					<code>
+<pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  ...
+  &lt;body&gt;
+    ...
+    <span class="fragment visible">{#test-scripts}
+      <span class="fragment visible">&lt;script src="{.}"&gt;&lt;/script&gt;</span>
+    {/test-scripts}</span>
+  &lt;/body&gt;</span>
+&lt;/html&gt;
+</pre>
+					</code>
+				</section>
+
+				<section>
+					<h1>Benefits</h1>
+					<ul>
+						<li class="fragment visible">Catches overly broad changes</li>
+						<li class="fragment visible">Increases confidence in refactors</li>
+					</ul>
+				</section>
+
+				<section>
+					(TK: Champagne cascade)
+
+					<aside class="notes">
+						<p>This is a technical explanation of how refactoring CSS works.</p>
+						<p>If everything is balanced correctly, the Dom will cascade from the top to the bottom.</p>
+					</aside>
+				</section>
+
+				<section data-background="#ddd6d0">
+					<h1>Regression</h1>
+				</section>
+
+				<section>
+					(TK: Pulling out table clotch)
+
+					<aside class="notes">
+						<p>This is a technical explanation of how deploying CSS feels.</p>
+						<p>The flowers are still standing!</p>
+					</aside>
 				</section>
 
 			</div>

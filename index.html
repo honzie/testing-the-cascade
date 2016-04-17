@@ -15,7 +15,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+		<link rel="stylesheet" href="css/theme/css-testing.css" id="theme">
 
 		<!-- Code syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -36,13 +36,318 @@
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
-				<section>
-					<h1>Testing The Cascade</h1>
-					<h4>Hans Sprecher</h4>
-					<p>
-						<small><a href="http://www.hanssprecher.com/">www.hanssprecher.com</a> | <a href="http://twitter.com/honzie">@honzie</a></small>
-					</p>
+				<section data-background="images/niagera-dry.jpg">
+					<h1>Testing the Cascade</h1>
 				</section>
+
+				<section>
+					<section>
+						<h1 class="fragment visible">Time Inc.</h1>
+						<h4>Hans Sprecher</h4>
+						<p>
+							<small><a href="http://www.hanssprecher.com/">www.hanssprecher.com</a> | <a href="http://twitter.com/honzie">@honzie</a></small>
+						</p>
+					</section>
+
+					<section>
+						<h1>
+							<span>TIME</span>
+							<span class="fragment visible">LIFE</span>
+							<span class="fragment visible">People</span>
+						</h1>
+					</section>
+
+					<section>
+						<h1>Horse &amp; Hound</h1>
+					</section>
+
+					<section>
+						<h1>Amazon</h1>
+					</section>
+				</section>
+
+				<section>
+					(TK: Netscape navigator)
+					(TK: Page Sound)
+				</section>
+
+				<section>
+					(TK: Pager Image)
+				</section>
+
+				<section>
+					(TK: Image of app)
+				</section>
+
+				<section>
+					<h1>Utility Classes</h1>
+					<code>
+<pre class="hljs">
+.none {
+  display: none;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+</pre>
+					</code>
+				</section>
+
+				<section>
+					<h1>Was <code>.left</code> used?</h1>
+				</section>
+
+				<section data-background="images/google.png">
+				</section>
+
+				<section data-background="images/no-results-found.png" data-background-position="left top">
+				</section>
+
+				<section>
+					<h1>Comprehensive?</h1>
+					<ul>
+						<li class="fragment visible">Could exist in HTML</li>
+						<li class="fragment visible">Could exist in JS</li>
+						<li class="fragment visible">Programmatically constructed</li>
+						<li class="fragment visible">Returned from AJAX injection</li>
+					</ul>
+					<h2 class="fragment visible">No.</h2>
+				</section>
+
+				<section>
+					(TK: Broken App)
+				</section>
+
+				<section class="inverse" data-background="images/no-results-found.png" data-background-position="left top">
+					<h2 class="note">
+						<br /><br /><br /><br /><br /><br />
+						* Not showing 1 result
+					</h2>
+				</section>
+
+				<section>
+					<h1>Avoiding this.</h1>
+				</section>
+
+				<section>
+					<h1>I</h1>
+					<h2>Namespacing Classes</h2>
+					<aside class="notes">
+						By namespacing our classes, we limit the influence of our classes. However, there are two limitations here. The first is that this removes some of our ability to fully use the cascade, limiting CSS' effectiveness—and code re-use. The second, and potentially more serious, is that namespace collisions can occur.
+					</aside>
+				</section>
+
+				<section>
+					<h1>II</h1>
+					<h2>Scoping CSS</h2>
+					<aside class="notes">
+						There are two ways to strictly scope CSS. (1) Load only on pages that need it. Downside: extra HTTP requests, doesn't work well for pages with multiple teams contributing to it. (2) Use technology that strictly sandboxes CSS, like React or Web Components. (Check on web components).
+					</aside>
+				</section>
+
+				<section>
+					<h1>III</h1>
+					<h2>Testing</h2>
+					<aside class="notes">
+						Automatically looking at our CSS to see if it fulfills our needs. This is what I want to focus on today.
+					</aside>
+				</section>
+
+				<section>
+					<section>
+						<h1>Why?</h1>
+						<h2 class="fragment visible">CSS is Declarative.</h2>
+
+						<aside class="notes">
+							Don't forget down. Declaration of CSS.
+						</aside>
+					</section>
+
+					<section>
+						<blockquote>
+							4 Scope &amp;<br />
+							CSS years ago.
+						</blockquote>
+					</section>
+				</section>
+
+				<section>
+					<h1>That's not how we write CSS.</h1>
+
+					<aside class="notes">
+						By this, I don't mean writing a Declaration of CSS and another Hamilton musical. There's a difference between how we write CSS in practice and how we go about understanding how to represent a design in CSS.
+					</aside>
+				</section>
+
+				<section>
+					<section>
+						<h1>Declaring Each Property</h1>
+						<h2 class="fragment visible">No Cascade</h2>
+						<h2 class="fragment visible">Only Override Defaults</h2>
+					</section>
+
+					<section>
+						<h1>Amazon</h1>
+						(TK: screenshot, result)
+					</section>
+
+					<section>
+						<h1>Facebook Wall</h1>
+						(TK: screenshot, result)
+					</section>
+
+					<section>
+						<h1>Time</h1>
+						(TK: screenshot, result)
+					</section>
+
+					<section>
+						<h1>Bootstrap Components</h1>
+						(TK: screenshot, result)
+					</section>
+
+					<section>
+						<h1>A List Apart</h1>
+						(TK: screenshot, result)
+					</section>
+
+					<section>
+						<h1>Overall: (TK average)</h1>
+						<table>
+							<thead>
+								<tr>
+									<th>Brand</th>
+									<th>Increase</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Amazon</td>
+									<td>TK</td>
+								</tr>
+								<tr>
+									<td>Facebook</td>
+									<td>TK</td>
+								</tr>
+								<tr>
+									<td>Time</td>
+									<td>TK</td>
+								</tr>
+								<tr>
+									<td>Bootstrap</td>
+									<td>TK</td>
+								</tr>
+								<tr>
+									<td>A List Apart</td>
+									<td>TK</td>
+								</tr>
+							</tbody>
+						</table>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h1>Great CSS Captures Design</h1>
+					</section>
+
+					<section>
+						<h1><del>Great</del> Good CSS Captures Design</h1>
+					</section>
+				</section>
+
+				<section>
+					(TK: Header example)
+
+					<aside class="notes">
+						<p>Consider a bare-bones header, with a logo, horizontal navigation, and some tool links in the upper right hand corner.</p>
+						<p>Let's imagine that the navigation font size changes. It gets a bit bigger. Should the tool links become larger? Should they remain the same size? Assuming that the navigation font size is applied to the header, the answer could be the difference between using <code>em</code> and <code>rem</code> units.</p>
+					</aside>
+				</section>
+
+				<section>
+					(TK: DW, Frontpage logos)
+
+					<aside class="notes">
+						<p>If there were limited value to well-written CSS, these tools would have worked significantly better.</p>
+					</aside>
+				</section>
+
+				<section>
+					(TK: Craftsman image)
+
+					<aside class="notes">
+						<p>CSS is crafted. It is opinionated. The browser defaults have opinions about reading content. Responsive design and table-based designs were also opinionated about the fundamental design direction of the web. Frameworks and themes have opinions. Bootstrap has opinions.</p>
+					</aside>
+				</section>
+
+				<section>
+					(TK: Eames Lounge Chair)
+					(TK: Link to material honesty and web)
+
+					<aside class="notes">
+						<p>These opinions give CSS its grain. As one of three languages we work with in the browser, this grain defines the material of the web.</p>
+						<p>Like other designed objects, the best results are often derived when the work is materially honest—honest to the medium it is crafted in. My favorite example is the Eames lounge chair, which is as close to the platonic ideal of a lounge chair as—well—as we'll get.</p>
+						<p>The lounge chair works because of its honesty with its materials. Using bent plywood and down-stuffed leather.</p>
+					</aside>
+				</section>
+
+				<section>
+					<section>
+						<h1>How</h1>
+						<h2 class="fragment visible">Unit</h2>
+						<h2 class="fragment visible">Integration</h2>
+						<h2 class="fragment visible">Regression</h2>
+
+						<aside class="notes">
+							<p>But I digress. <em>How</em> can we test CSS? Let's apply three common types of sofware testing.</p>
+						</aside>
+					</section>
+
+					<section>
+						<h1>Unit</h1>
+						<h2>Does it work?</h2>
+					</section>
+
+					<section>
+						<h1>Integration</h1>
+						<h2>Does it play nice?</h2>
+					</section>
+
+					<section>
+						<h1>Regression</h1>
+						<h2>Did it break?</h2>
+					</section>
+				</section>
+
+				<section>
+					<h1>Unit</h1>
+				</section>
+
+				<section>
+					<h1>Plain Demo</h1>
+					<h2 class="fragment visible">Shopping is hard. Let's write CSS.</h2>
+				</section>
+
+				<section>
+					<h1>Framework Demo</h1>
+					<h2 class="fragment visible">More realistic complexity.</h2>
+				</section>
+
+				<section>
+					<h1>Two Declarations</h1>
+
+					<ul>
+						<li class="fragment visible">As Designed</li>
+						<li class="fragment visible">As Written</li>
+					</ul>
+				</section>
+
 			</div>
 
 		</div>
@@ -61,6 +366,7 @@
 				center: true,
 
 				transition: 'slide', // none/fade/slide/convex/concave/zoom
+				backgroundTransition: 'zoom',
 
 				// Optional reveal.js plugins
 				dependencies: [

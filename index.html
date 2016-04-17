@@ -367,7 +367,7 @@
         <section>
           <section>
             <h1>Unit Isolation</h1>
-            (TK: Buy box screenshot)
+            <img src="images/buy-box.png" height="400">
 
             <aside class="notes">
               <p>But how can we ensure the test only probes a 'unit' of code? CSS can be deep and complex.</p>
@@ -385,11 +385,10 @@
 <span class="fragment visible">  &lt;head&gt;
     &lt;meta charset="utf-8"&gt;
     &lt;title&gt;Unit Test Layout&lt;/title&gt;
-    <span class="fragment visible">&lt;link rel="stylesheet" href="site-defaults.css"&gt;</span>
+    <span class="fragment visible">&lt;link rel="stylesheet" href="defaults.css"&gt;</span>
     <span class="fragment visible">{block-styles}</span>
-  &lt;/head&gt;
-</span><span class="fragment visible">
-  &lt;body&gt;
+  &lt;/head&gt;</span>
+<span class="fragment visible">  &lt;body&gt;
     <span class="fragment visible">{block}</span>
     <span class="fragment visible">{block-test-scripts}</span>
   &lt;/body&gt;</span>
@@ -415,7 +414,19 @@ index.styl:
 
         <section>
           <h1>Relative Styles</h1>
-          (TK: Two boxes with a space between them)
+          <code>
+<pre>
+<span class="fragment visible">// 'frame' is the Quixote test frame.
+var header = frame.get("#header");</span>
+<span class="fragment visible">var navbar = frame.get(".navbar");</span>
+
+<span class="fragment visible">navbar.assert({
+  <span class="fragment visible">top: header.bottom.plus(10),</span>
+  <span class="fragment visible">left: frame.page().left,
+  width: frame.viewport().width</span>
+});</span>
+</pre>
+          </code>
         </section>
 
         <section>
@@ -424,7 +435,7 @@ index.styl:
             <li class="fragment visible">Quixote</li>
             <li class="fragment visible">Hardy</li>
             <li class="fragment visible">CSS U</li>
-            <li class="fragment visible">Selenium (TK: spelling)</li>
+            <li class="fragment visible">Selenium</li>
           </ul>
         </section>
 

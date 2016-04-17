@@ -36,7 +36,7 @@
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
-				<section data-background="images/niagera-dry.jpg">
+				<section class="title" data-background="images/niagera-dry.jpg">
 					<h1>Testing the Cascade</h1>
 				</section>
 
@@ -110,13 +110,13 @@
 
 				<section>
 					<h1>Comprehensive?</h1>
+					<h2 class="fragment visible">No.</h2>
 					<ul>
 						<li class="fragment visible">Could exist in HTML</li>
 						<li class="fragment visible">Could exist in JS</li>
 						<li class="fragment visible">Programmatically constructed</li>
 						<li class="fragment visible">Returned from AJAX injection</li>
 					</ul>
-					<h2 class="fragment visible">No.</h2>
 				</section>
 
 				<section>
@@ -467,6 +467,171 @@ index.styl:
 					</aside>
 				</section>
 
+				<section>
+					<h1>Frozen DOM</h1>
+					(TK: Olaf)
+
+					<aside class="notes">
+						<p>I've been waiting a yaer to use this slide.</p>
+						<p>Seriously. Let's stick with DOM computations for a moment, assuming a frozen snapshot of the DOM.</p>
+					</aside>
+				</section>
+
+				<section>
+					<section>
+						(TK, Amazon Facebook Time percentages)
+					</section>
+
+					<section>
+						<h1>TeCSSt Output</h1>
+						(TK: Output from TeCCSt)
+					</section>
+
+					<section>
+						<h1>Hashed Output</h1>
+						(TK: hashed output)
+					</section>
+
+					<section>
+						<h1>Output Diff</h1>
+						(TK: show diff)
+					</section>
+
+					<section>
+						<h1>Reference Snapshot</h1>
+						<ul>
+							<li class="fragment visible">Define canonical snapshot</li>
+							<li class="fragment visible">Compute styles from Frozen DOM</li>
+							<li class="fragment visible">Display diff</li>
+							<li class="fragment visible">Define new snapshot</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					(TK: Selenium screenshot)
+				</section>
+
+				<section>
+					<h1>Regression Tools</h1>
+					<ul>
+						<li class="fragment visible">TeCCSt</li>
+						<li class="fragment visible">Selenium</li>
+						<li class="fragment visible">Quixote</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Image Diff</h1>
+					(TK: Find the difference comic)
+				</section>
+
+				<section>
+					<section>
+						(TK: Two side by side pages)
+					</section>
+
+					<section>
+						(TK: Combined with Wraith)
+					</section>
+				</section>
+
+				<section>
+					<h1>Wraith</h1>
+					(TK: link to Wraith)
+				</section>
+
+				<section>
+					(TK: Demo Wraith)
+				</section>
+
+				<section>
+					(TK: Aliased 'Aa')
+				</section>
+
+				<section>
+					<h1>Image Regression Tools</h1>
+					<ul>
+						<li class="fragment visible">Wraith</li>
+						<li class="fragment visible">Selenium</li>
+					</ul>
+				</section>
+
+				<section data-background="#ddd6d0">
+					<h1>What to Test?</h1>
+				</section>
+
+				<section>
+					<p>Bugs: Gotta Catch them All</p>
+					(TK: bug in amber)
+				</section>
+
+				<section>
+					<h1>Important Components</h1>
+					<ul>
+						<li class="fragment visible">Navigation</li>
+						<li class="fragment visible">Purchase flow</li>
+						<li class="fragment visible">Hero images</li>
+					</ul>
+				</section>
+
+				<section data-background="#ddd6d0">
+					<h1>Avoiding Testing</h1>
+				</section>
+
+				<section>
+					(TK: Sandbox)
+				</section>
+
+				<section>
+					<h1>Static Analysis</h1>
+					<ul>
+						<li class="fragment visible">CSS Lint</li>
+						<li class="fragment visible">Style Stats</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Naming Philosophies</h1>
+					<ul>
+						<li class="fragment visible">Flat specificity frameworks</li>
+						<li class="fragment visible">OOCSS</li>
+						<li class="fragment visible">BEM</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Class Prefixes</h1>
+					<ul>
+						<li class="fragment visible"><code>.u-</code>: Utility</li>
+						<li class="fragment visible"><code>.js-</code>: JS hook</li>
+						<li class="fragment visible"><code>.qa-</code>: QA or test hook</li>
+						<li class="fragment visible"><code>._h-</code>: Hack</li>
+					</ul>
+				</section>
+
+				<section data-background="#ddd6d0">
+					<h1>Confident CSS</h1>
+				</section>
+
+				<section>
+					<h1>CSS Testing</h1>
+					<ul>
+						<li class="fragment visible">Declarative languages need tests</li>
+						<li class="fragment visible">Unit</li>
+						<li class="fragment visible">Integration</li>
+						<li class="fragment visible">Regression</li>
+						<li class="fragment visible">What to test</li>
+						<li class="fragment visible">How not to test</li>
+					</ul>
+				</section>
+
+				<section class="title" data-background="images/niagera-water.jpg">
+					<h1>Testing the Cascade</h1>
+				</section>
+
+				<section class="title" data-background="images/niagera-dry.jpg">
+				</section>
 			</div>
 
 		</div>

@@ -11,8 +11,8 @@ section.has-light-background, section.has-light-background h1, section.has-light
  * GLOBAL STYLES
  *********************************************/
 body {
-  background: #222;
-  background-color: #222; }
+  background: #002b36;
+  background-color: #002b36; }
 
 .reveal {
   font-family: "Source Sans Pro", Helvetica, sans-serif;
@@ -22,7 +22,7 @@ body {
 
 ::selection {
   color: #fff;
-  background: #bee4fd;
+  background: #d33682;
   text-shadow: none; }
 
 .reveal .slides > section,
@@ -33,6 +33,10 @@ body {
 /*********************************************
  * HEADERS
  *********************************************/
+h1 {
+  color: #eee8d5;
+}
+
 .reveal h1,
 .reveal h2,
 .reveal h3,
@@ -171,7 +175,7 @@ body {
   font-family: monospace;
   line-height: 1.2em;
   word-wrap: break-word;
-  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3); }
+  background: rgba(0, 0, 0, .3); }
 
 .reveal code {
   font-family: monospace; }

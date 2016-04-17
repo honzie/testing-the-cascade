@@ -178,7 +178,8 @@ h1 {
   background: rgba(0, 0, 0, .3); }
 
 .reveal code {
-  font-family: monospace; }
+  font-family: monospace;
+  font-weight: normal; }
 
 .reveal pre code {
   display: block;
@@ -304,10 +305,10 @@ h1 {
  * PROGRESS BAR
  *********************************************/
 .reveal .progress {
-  background: rgba(0, 0, 0, 0.2); }
+  background: rgba(0, 0, 0, 0.1); }
 
 .reveal .progress span {
-  background: #42affa;
+  background: rgba(0, 0, 0, 0.4);
   -webkit-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
   -moz-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
   transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985); }

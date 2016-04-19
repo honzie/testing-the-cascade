@@ -69,7 +69,12 @@
         <section>
           <img src="images/mozilla-page.gif" height="500">
           <p><small>ca. 1999, from www.mozillazine.org</small></p>
-          <!-- TK: Page Sound -->
+          <section>
+          </section>
+
+          <section data-state="terror">
+          	<audio src="sounds/pager_beep.mp3"></audio>
+          </section>
         </section>
 
         <section data-background="images/pager.jpg">
@@ -549,7 +554,7 @@ var header = frame.get("#header");</span>
 
           <section>
             <h1>Output Diff</h1>
-            (TK: show diff)
+            <img src="images/diff.png" height="400">
           </section>
 
           <section>
@@ -579,12 +584,10 @@ var header = frame.get("#header");</span>
         </section>
 
         <section>
-          <section>
-            (TK: Two side by side pages)
+          <section data-background="images/drive-side-by-side.png" class="contain">
           </section>
 
-          <section>
-            (TK: Combined with Wraith)
+          <section data-background="images/drive-diff-full.png" class="contain">
           </section>
         </section>
 
@@ -681,7 +684,16 @@ var header = frame.get("#header");</span>
           <h1>Testing the Cascade</h1>
         </section>
 
-        <section class="title" data-background="images/niagera-dry.jpg" data-background-transition="none">
+        <section data-background="images/niagera-dry.jpg" data-background-transition="none">
+	        <section class="title">
+	        </section>
+
+	        <section class="title u-nowrap">
+	        	<h4><span class="mask">Slides: github.com/honzie/testing-the-cascade</span></h4>
+	        	<p><span class="mask">github.com/BBC-News/wraith</span></p>
+	        	<p><span class="mask">github.com/jamesshore/quixote</span></p>
+	        	<p><span class="mask">csste.st/</span></p>
+	        </section>
         </section>
       </div>
 
@@ -720,6 +732,9 @@ var header = frame.get("#header");</span>
         ]
       });
 
+      Reveal.addEventListener('terror', function () {
+    		document.querySelector('audio').play();
+			} );
     </script>
 
   </body>

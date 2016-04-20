@@ -506,14 +506,16 @@ var header = frame.get("#header");</span>
         </section>
 
         <section>
-          <h1>Frozen DOM</h1>
+          <section>
+            <h1>Reference Snapshot</h1>
+            <ul>
+              <li class="fragment visible">Define canonical snapshot</li>
+              <li class="fragment visible">Compute styles from Frozen DOM</li>
+              <li class="fragment visible">Display diff</li>
+              <li class="fragment visible">Define new snapshot</li>
+            </ul>
+          </section>
 
-          <aside class="notes">
-            <p>Let's stick with DOM computations for a moment, assuming a frozen snapshot of the DOM.</p>
-          </aside>
-        </section>
-
-        <section>
           <section>
             <table>
               <thead>
@@ -556,25 +558,6 @@ var header = frame.get("#header");</span>
             <h1>Output Diff</h1>
             <img src="images/diff.png" height="400">
           </section>
-
-          <section>
-            <h1>Reference Snapshot</h1>
-            <ul>
-              <li class="fragment visible">Define canonical snapshot</li>
-              <li class="fragment visible">Compute styles from Frozen DOM</li>
-              <li class="fragment visible">Display diff</li>
-              <li class="fragment visible">Define new snapshot</li>
-            </ul>
-          </section>
-        </section>
-
-        <section>
-          <h1>Regression Tools</h1>
-          <ul>
-            <li class="fragment visible">TeCCSt</li>
-            <li class="fragment visible">Selenium</li>
-            <li class="fragment visible">Quixote</li>
-          </ul>
         </section>
 
         <section>

@@ -1,0 +1,827 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Testing The Cascade</title>
+
+    <meta name="description" content="Presentation for Testing The Cascade, a talk on CSS testing techniques.">
+    <meta name="author" content="Hans Sprecher">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/notes.css">
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section class="title" data-background="images/niagera-dry.jpg">
+          <h1>Testing the Cascade</h1>
+
+          <aside class="notes">
+            <p>Hello WebDevCon! This is <em>Testing the Cascade</em>. It's a talk on CSS testing. If you stumbled in here looking for JDD's talk on Lodash, you're in the wrong place. Please stick around—I don't blame you if you don't. Lodash is one of the most important JavaScript utility libraries right now.</p>
+            <p>Thank you for joining me today as we explore this interesting and severely underrecognized area of web development.</p>
+          </aside>
+        </section>
+
+        <section>
+          <section>
+            <h1 class="fragment visible"><img src="images/time-inc-logo-white.svg" height="150" alt="Time Inc."></h1>
+            <h4>Hans Sprecher</h4>
+            <p>
+              <small><a href="http://www.hanssprecher.com/">www.hanssprecher.com</a> | <a href="http://twitter.com/honzie">@honzie</a></small>
+            </p>
+
+            <aside class="notes">
+              <p>My name's Hans Sprecher. You can find me on the web, hanssprecher.com, and on Twitter, @honzie. I currently work for Time Inc. We don't—unfortunately—make time machines, Tardises (Tardi?), DeLoreans, or even watches. But in a sense, we make Time.</p>
+            </aside>
+          </section>
+
+          <section>
+            <h1 class="u-nowrap">
+              <span><img src="images/time-logo-white.svg" height="150" alt="TIME"></span>
+              <span class="fragment visible"><img src="images/life-logo.png" height="150" alt="LIFE"></span>
+              <span class="fragment visible"><img src="images/people-logo.png" height="150" alt="People"></span>
+            </h1>
+
+            <aside class="notes">
+              <p>In the same sense, we make LIFE and People. We're a large branded media company that even has brands with more than one word in their title. My favorite—Horse and Hound.</p>
+            </aside>
+          </section>
+
+          <section>
+            <h1><img src="images/horse-and-hound-logo-white.png" height="100" alt="Horse &amp; Hound"></h1>
+          </section>
+
+          <section>
+            <h1><img src="images/amazon-smile.png" height="125" alt="Amazon"></h1>
+
+            <aside class="notes">
+              <p>But before working in publishing, I worked at a local book shop.</p>
+              <p>And massive shout out to Amazon for hosting this event and opening it up to the public—both speakers and attendees. This is my fourth time speaking here—it's a delight to see it grow and open up.</p>
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <img src="images/mozilla-page.gif" height="500">
+          <p><small>ca. 1999, from www.mozillazine.org</small></p>
+
+          <aside class="notes">
+            So, I realized the other day—I've been coding for more than half my life. This is roughly what the web looked like when I started. Actually, this was a couple years <em>after</em> starting. And I'd like to begin with the story of my first page.
+          </aside>
+        </section>
+
+        <section data-background="images/pager.jpg">
+          <aside class="notes">
+            <p>But, not webpage page. Pager page.</p>
+            <p>The terrifying type of page. I was going to play the audio. Have a beautiful recording of the pager audio. But that is almost certainly against the Geneva convention.</p>
+          </aside>
+        </section>
+
+        <section data-background="images/app-demo.png">
+          <aside class="notes">
+            <p>I was working on an application within a b2b platform. My team owned both applications on the site as well as the platform architecture. One of the things we wanted to add was a CSS reset and a series of utility classes.</p>
+          </aside>
+        </section>
+
+        <section>
+          <section>
+            <h1>Utility Classes</h1>
+            <code>
+  <pre>
+  .none {
+    display: none;
+  }
+
+  .left {
+    float: left;
+  }
+
+  .right {
+    float: right;
+  }
+  </pre>
+            </code>
+
+            <aside class="notes">
+              <p>Utility classes—like the type every developer has. These are some of mine. It seems like everyone has a dozen classes they carry around from project to project. A framework. A set of tools.</p>
+            </aside>
+          </section>
+
+          <section>
+            <h1>Was <code>.left</code> used?</h1>
+
+            <aside class="notes">
+              <p>One of the benefits of utility classes is easy-to-remember names that work everywhere in the project. One of the downsides is that easy-to-remember names are likely used elsewhere.</p>
+            </aside>
+          </section>
+
+          <section data-background="images/google.png">
+            <aside class="notes">
+              <p>So, we looked at our code and the code of other applications on our platform to see who was using the class.</p>
+            </aside>
+          </section>
+
+          <section data-background="images/no-results-found.png" data-background-position="left top" data-background-transition="none">
+            <aside class="notes">
+              <p>A quick search through our code found no instances of the class left being used anywhere.</p>
+            </aside>
+          </section>
+
+          <section>
+            <h1>Comprehensive?</h1>
+            <h2 class="fragment visible">No.</h2>
+            <ul>
+              <li class="fragment visible">Could exist in HTML</li>
+              <li class="fragment visible">Could exist in JS</li>
+              <li class="fragment visible">Programmatically constructed</li>
+              <li class="fragment visible">Returned from AJAX injection</li>
+            </ul>
+          </section>
+
+        </section>
+        <section>
+
+          <section data-background="images/app-demo-working.png">
+            <aside class="notes">
+              <p>The deployment went smoothly, and a new feature was added to the dashboard. We basked in post-release bliss for a brief period of time.</p>
+            </aside>
+          </section>
+
+          <section data-background="images/app-demo-broken.png" data-background-transition="none">
+            <aside class="notes">
+              <p>Just like pad-left breaking the internet, class left broke one of our tenants.</p>
+            </aside>
+          </section>
+
+          <section class="inverse" data-background="images/no-results-found.png" data-background-position="left top">
+            <h2 class="note">
+              <br /><br /><br /><br /><br /><br />
+              * Not showing 1 result
+            </h2>
+
+            <aside class="notes">
+              <p>What happened? Another app was using the same class name. It wasn't caught because the CSS and HTML files that included it weren't indexed in the search tool we were using. For full disclosure, we were not using Google.</p>
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h1>Avoiding this.</h1>
+          </section>
+
+          <section>
+            <h1>I</h1>
+            <h2>Namespacing Classes</h2>
+            <aside class="notes">
+              We can use namespaces. By namespacing classes, their influence is limited. That's an upside. Two downsides. (1) this removes some of our ability to fully use the cascade, limiting CSS' effectiveness—and code re-use. (2) and potentially more serious: namespacing isn't checked while writing code.
+            </aside>
+          </section>
+
+          <section>
+            <h1>II</h1>
+            <h2>Scoping CSS</h2>
+            <aside class="notes">
+              We can scope our CSS. A couple options exist. (1) Load only on pages that need it. Downside: extra HTTP requests—at least until we are on HTTP2—and doesn't solve for pages with multiple teams contributing to it. (2) Use technology that strictly sandboxes CSS, like React or Web Components.
+            </aside>
+          </section>
+
+          <section>
+            <h1>III</h1>
+            <h2>Testing</h2>
+            <aside class="notes">
+              We can test, automatically looking at our CSS to ensure it fulfills our needs. This is what I want to focus on today.
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h1>Why?</h1>
+            <h2>CSS is Declarative.</h2>
+
+            <aside class="notes">
+              But, why bother? CSS is a declarative language.
+            </aside>
+          </section>
+
+          <section>
+            <blockquote>
+              4 Scope &amp;<br />
+              CSS years ago.
+            </blockquote>
+
+            <aside class="notes">
+              A CSS declaration is read and acted on as written by the browser.
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <h1>That's not how we write CSS.</h1>
+
+          <aside class="notes">
+            There's a difference between how we write CSS in practice and how we go about understanding how to represent a design in CSS.
+          </aside>
+        </section>
+
+        <section>
+          <section>
+            <h1>Declaring Each Property</h1>
+            <h2 class="fragment visible">No Cascade</h2>
+            <h2 class="fragment visible">Only Override Defaults</h2>
+
+            <aside class="notes">
+              <p>Let's imagine a world without a cascade. Where every DOM node needs to have every non-default style overridden.</p>
+            </aside>
+          </section>
+
+          <section data-background="images/amazon-screen.png">
+            <h1><span class="mask">83 kB</span></h1>
+            <h1><span class="mask">11,939 kB</span></h1>
+            <aside class="notes">
+              <p>Amazon, for an unrecognized user, transfers a scant 83kb of minified CSS to the user.</p>
+              <p>Amazon: Original: 82.6 kB, Rendered: 12-20.5 MB (incognito vs logged in).</p>
+            </aside>
+          </section>
+
+          <section data-background="images/facebook-wall-screen.png">
+            <h1><span class="mask">130 kB</span></h1>
+            <h1><span class="mask">20,138 kB</span></h1>
+            <aside class="notes">
+              Facebook: Original: 130, Rendered: 20 MB
+            </aside>
+          </section>
+
+          <section data-background="images/time-screen.png">
+            <h1><span class="mask">302 kB</span></h1>
+            <h1><span class="mask">8,854 kB</span></h1>
+            <aside class="notes">
+              TIME: Original: 302, Rendered: 9 MB.
+            </aside>
+          </section>
+
+          <section data-background="images/ala-screen.png">
+            <h1><span class="mask">35 kB</span></h1>
+            <h1><span class="mask">2,062 kB</span></h1>
+            <aside class="notes">
+              A List Apart: Original: 35 kB, Rendered: 2 MB
+            </aside>
+          </section>
+
+          <section>
+            <h1>Power of Cascade</h1>
+            <table>
+              <thead>
+                <tr>
+                  <th>Brand</th>
+                  <th>Increase</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Amazon</td>
+                  <td>0.7%</td>
+                </tr>
+                <tr>
+                  <td>Facebook</td>
+                  <td>0.6%</td>
+                </tr>
+                <tr>
+                  <td>Time</td>
+                  <td>3.4%</td>
+                </tr>
+                <tr>
+                  <td>A List Apart</td>
+                  <td>1.7%</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h1>Great CSS Captures Design</h1>
+
+            <aside class="notes">
+              <p>This implies that great CSS captures design and leverages the cascade.</p>
+            </aside>
+          </section>
+
+          <section>
+            <h1><del>Great</del> Good CSS Captures Design</h1>
+
+            <aside class="notes">
+              <p>Heck. Even decent CSS does this.</p>
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <section data-background="images/jumbotron.png">
+            <aside class="notes">
+              <p>Consider a section with a header and text.</p>
+              <p>Let's imagine that the section's font size changes. It gets a bit bigger. Should the header become larger? Should they remain the same size? The answer could be the difference between using <code>em</code> and <code>rem</code> units.</p>
+            </aside>
+          </section>
+
+          <section data-background="images/jumbotron-orange.png" data-background-transition="none">
+            <aside class="notes">
+              <p>With Bootstrap, both header and text are coded in pixels, so they are independent—just like if we used <code>rem</code>s. However, the font color inherits for both elements.</p>
+            </aside>
+          </section>
+        </section>
+
+        <section data-background="images/crafted.jpeg">
+
+          <aside class="notes">
+            <p>CSS is crafted. It is opinionated. The browser defaults have opinions about reading content. Responsive design and table-based designs approach the fundamental design direction of the web from two sides. Frameworks and themes have opinions. Bootstrap has opinions.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h1>
+            <img src="images/dreamweaver-logo.png" height="400">
+            <img src="images/frontpage-logo.png" height="400">
+          </h1>
+
+          <aside class="notes">
+            <p>Otherwise—were these opinions not important, these tools would have worked better.</p>
+          </aside>
+        </section>
+
+        <section data-background="images/lounge.jpg">
+          <p><span class="mask">www.alistapart.com/article/material-honesty-on-the-web</span></p>
+          <p><small>Photo Casey Marshall</small></p>
+
+          <aside class="notes">
+            <p>Opinions give CSS its grain. As one of three languages we work with in the browser, this grain defines the material of the web.</p>
+            <p>Like other designed objects, the best results are often derived when the work is honest to the medium it is crafted in. Consider the Eames lounge chair—a modern classic. It works with the grain (so to speak) of the plywood it is crafted with. A List Apart has a great article on materially honest design that's well worth a read.</p>
+          </aside>
+        </section>
+
+        <section>
+          <section>
+            <h1>How?</h1>
+
+            <aside class="notes">
+              <p>But I digress. <em>How</em> can we test CSS? Let's apply three common types of sofware testing.</p>
+            </aside>
+          </section>
+
+          <section>
+            <h1>Unit</h1>
+            <h2>Does it work?</h2>
+          </section>
+
+          <section>
+            <h1>Integration</h1>
+            <h2>Does it play nice?</h2>
+          </section>
+
+          <section>
+            <h1>Regression</h1>
+            <h2>Did it break?</h2>
+          </section>
+        </section>
+
+        <section data-background="#ddd6d0">
+          <h1>Unit</h1>
+        </section>
+
+        <section>
+          <h1>Plain Demo</h1>
+          <h2 class="fragment visible">Shopping is hard. Let's write CSS.</h2>
+
+          <aside class="notes">
+            <p>Who likes live demos? I do. They go horrifically wrong in new and exciting ways. So, let's look at a set of tests written off of the redlines from our designer. Remember the declarative language? We change some semicolons and commas.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h1>Framework Demo</h1>
+          <h2 class="fragment visible">More realistic complexity.</h2>
+
+          <aside class="notes">
+            <p>Remember the declarative language?
+          </aside>
+        </section>
+
+        <section>
+          <h1>Two Declarations</h1>
+
+          <ul>
+            <li class="fragment visible">As Designed</li>
+            <li class="fragment visible">As Deployed</li>
+          </ul>
+        </section>
+
+        <section>
+          <section>
+            <h1>Unit Isolation</h1>
+            <img src="images/buy-box.png" height="400">
+
+            <aside class="notes">
+              <p>But how can we ensure the test only probes a 'unit' of code? CSS can be deep and complex.</p>
+              <p>We can render a page with only a block on it. The buy box might seem too large, or too small. I think it's pretty goldilocks-sized.</p>
+            </aside>
+          </section>
+
+          <section>
+            <h1>Unit Test Layout</h1>
+
+            <code>
+<pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+<span class="fragment visible">  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;Unit Test Layout&lt;/title&gt;
+    <span class="fragment visible">&lt;link rel="stylesheet" href="defaults.css"&gt;</span>
+    <span class="fragment visible">{block-styles}</span>
+  &lt;/head&gt;</span>
+<span class="fragment visible">  &lt;body&gt;
+    <span class="fragment visible">{block}</span>
+    <span class="fragment visible">{block-test-scripts}</span>
+  &lt;/body&gt;</span>
+&lt;/html&gt;
+</pre>
+            </code>
+
+            <aside class="notes">
+              <p>(Code walk: highlight necessity of tying together a block to its related stylesheets and scripts.)</p>
+            </aside>
+          </section>
+
+          <section>
+            <h1>Isolating Styles</h1>
+            <code>
+<pre>
+index.styl:
+<span class="fragment visible">@require 'header'
+@require 'article'</span>
+
+<span class="fragment visible">&gt; stylus header/index.styl --out ./header.css</span>
+<span class="fragment visible">&gt; stylus article/index.styl --out ./article.css</span>
+</pre>
+            </code>
+          </section>
+        </section>
+
+        <section>
+          <h1>Relative Styles</h1>
+          <code>
+<pre>
+<span class="fragment visible">// 'frame' is the Quixote test frame.
+var header = frame.get("#header");</span>
+<span class="fragment visible">var navbar = frame.get(".navbar");</span>
+
+<span class="fragment visible">navbar.assert({
+  <span class="fragment visible">top: header.bottom.plus(10),</span>
+  <span class="fragment visible">left: frame.page().left,
+  width: frame.viewport().width</span>
+});</span>
+</pre>
+          </code>
+
+          <aside>
+          </aside>
+        </section>
+
+        <section>
+          <h1>Unit Tools</h1>
+          <ul>
+            <li class="fragment visible">Quixote</li>
+            <li class="fragment visible">Hardy</li>
+            <li class="fragment visible">CSS U</li>
+            <li class="fragment visible">Selenium</li>
+          </ul>
+
+          <aside class="notes">
+            <p>The majority of CSS testing tools seem to be built around unit testing. Quixote is the most fluid and powerful. It is the spiritual successor to Hardy. CSS U was what we did our first demo in and is written as an extremely lightweight tool specifically for this talk. And Selenium has built-in supprot for style testing.</p>
+            <p>The only CSS tests I've owned in production were in Selenium. It wasn't the most fun to write in, which hampered our adoption. Used to have a red and a green lava lamp. The green lit up when all tests failed. Bless Selenium. The red one was always on. Einstein's definition of insanity doesn't at all work for selenium.</p>
+          </aside>
+        </section>
+
+        <section data-background="#ddd6d0">
+          <h1>Integration</h1>
+
+          <aside class="notes">
+            <p>Unit testing works in isolation and is good for test driven development (kidding). Most importantly, unit testing ensures our code meets our specs.</p>
+            <p>The tech behind unit testing—computing the properties of a rendered DOM can be leveraged for integration tests.</p>
+          </aside>
+        </section>
+
+        <section>
+          <div class="u-nowrap">
+            <img src="images/aa-before.jpg" height="270">
+            <img src="images/aa-after.jpg" height="270">
+          </div>
+          <p><small>www.fastcompany.com/1288618</small></p>
+
+          <aside class="notes">
+            <p>This is where integration testing hits its stride. In 2009, Dustin Curtis reimagined the American Airlines homepage and posted it on his blog. An American employee (think it was a senior UX designer) commented back that the homepage was the cummulative work of several dozen teams. That's a fairly massive integration.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h1>Run All Tests</h1>
+          <code>
+<pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  ...
+  &lt;body&gt;
+    ...
+    <span class="fragment visible">{#test-scripts}
+      <span class="fragment visible">&lt;script src="{.}"&gt;&lt;/script&gt;</span>
+    {/test-scripts}</span>
+  &lt;/body&gt;</span>
+&lt;/html&gt;
+</pre>
+          </code>
+
+          <aside class="notes">
+            <p>Our first plan is to take the conjunction of our integration tests. This is straightforward, since HTML and CSS act globally.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h1>Benefits</h1>
+          <ul>
+            <li class="fragment visible">Catches overly broad changes</li>
+            <li class="fragment visible">Increases confidence in refactors</li>
+          </ul>
+        </section>
+
+        <section data-background="images/champagne-tower.jpg" class="contain">
+
+          <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+          <p><small>Photo By ori2uru</small></p>
+
+          <aside class="notes">
+            <p>Writing well-integrated CSS is like pouring champagne into a champagne tower and watching it cascade down to the bottom. The entire structure feels unstable. But it's so graceful.</p>
+            <p>Of course, since it's unstable, it's easy to knock down. That's when the party gets interesting, but you have to get more champagne saucers.</p>
+          </aside>
+        </section>
+
+        <section data-background="#ddd6d0">
+          <h1>Regression</h1>
+
+          <aside class="notes">
+            <p>This brings us to regression. Because the biggest fear in CSS is changing something.</p>
+          </aside>
+        </section>
+
+        <section data-background="images/tablecloth.jpeg">
+
+          <aside class="notes">
+            <p>Deploying CSS feels like setting up a perfect spread on a table and then pulling out the tablecloth and seeing if the candles are still standing.</p>
+          </aside>
+        </section>
+
+        <section>
+          <section>
+            <h1>Reference Snapshot</h1>
+            <ul>
+              <li class="fragment visible">Define canonical snapshot</li>
+              <li class="fragment visible">Compute styles from Frozen DOM</li>
+              <li class="fragment visible">Display diff</li>
+              <li class="fragment visible">Define new snapshot</li>
+            </ul>
+
+            <aside class="notes">
+              <p>Regression testing follows a pattern. Define what things currently look like, see what the new version looks like, find the difference, and then declare the new snapshot to be proper if it looks like how we expect.</p>
+            </aside>
+          </section>
+
+          <section>
+            <table>
+              <thead>
+                <tr>
+                  <th>Brand</th>
+                  <th>Increase</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Amazon</td>
+                  <td>0.7%</td>
+                </tr>
+                <tr>
+                  <td>Facebook</td>
+                  <td>0.6%</td>
+                </tr>
+                <tr>
+                  <td>Time</td>
+                  <td>3.4%</td>
+                </tr>
+                <tr>
+                  <td>A List Apart</td>
+                  <td>1.7%</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <aside class="notes">
+              <p>Earlier in the talk, when I showed this table, it was built off of a computed stylesheet for an entire DOM.</p>
+            </aside>
+          </section>
+
+          <section data-background="images/css-compute.png">
+          </section>
+
+          <section>
+            <h1>Hashed Output</h1>
+            <p>1WjQjFEhaUrZQnduRU7HwgrP+61eVtQPCXF2QqTRvu8=</p>
+            <p>MBnRDpjsEOHQIyp7dU6Bi9b1rd671RW7hr7jU9hWfhM=</p>
+
+            <aside class="notes">
+              <p>We can compute a hash based on the computed stylesheet. When these hashes are the same, no styles on the page were affected.
+            </aside>
+          </section>
+
+          <section>
+            <h1>Output Diff</h1>
+            <img src="images/diff.png" height="400">
+
+            <aside class="notes">
+              <p>And this allows us to view the difference between the computed stylesheets when there is a difference.</p>
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <h1>Image Diff</h1>
+          <img src="images/spot-the-difference.png" height="360">
+          <p><small>https://en.wikipedia.org/wiki/File:Spot_the_difference.png</small></p>
+
+          <aside class="notes">
+            <p>Hashing and comparing 20mb stylesheets can be slow, and the output is arcane. A better solution might come from the Sunday comics. Remember sitting on a carpet as a kid trying to find all the changes between two images?</p>
+          </aside>
+        </section>
+
+        <section>
+          <section data-background="images/drive-side-by-side.png" class="contain">
+
+            <aside class="notes">
+              This is The Drive. It's a site my team owns about cars and car culture. On the left is the production version. On the right is a local version I was playing with. It has a different header.
+            </aside>
+          </section>
+
+          <section data-background="images/drive-diff-full.png" class="contain">
+
+            <aside class="notes">
+              By comparing these two sites, I can see—highlighted in blue—what my changes were. It's important that the content on the sites is the same.
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <h1>Wraith</h1>
+          <p>github.com/BBC-News/wraith</p>
+
+          <aside class="notes">
+            The tool I'm using is called Wraith, and it was developed at the BBC.
+          </aside>
+        </section>
+
+        <section>
+          <h1>Wraith Demo</h1>
+        </section>
+
+        <section>
+          <img src="images/subpixel-rendering.png">
+
+          <aside class="notes">
+            One fascinating note is that in development,they noted that the edges of text always showed as a difference. This was because of antialiasing and subpixel rendering differences. To fix this, they allow for a fuzz factor to be placed in. This helps avoid false negatives.
+          </aside>
+        </section>
+
+        <section>
+          <h1>Image Regression Tools</h1>
+          <ul>
+            <li class="fragment visible">Wraith</li>
+            <li class="fragment visible">Selenium</li>
+          </ul>
+        </section>
+
+        <section data-background="#ddd6d0">
+          <h1>What to Test?</h1>
+        </section>
+
+        <section data-background="images/amber.jpg">
+          <h2><span class="mask">Bugs: Gotta Catch them All</span></h2>
+          <p><small>Photo By Didier Desouens</small></p>
+
+          <aside class="notes">
+            <p>If tests should cover somewhere between 0 and 100 percent of the code, one solution is to take a snapshot and codify all bugs as part of the canonical snapshot.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h1>Important Components</h1>
+          <ul>
+            <li class="fragment visible">Navigation</li>
+            <li class="fragment visible">Purchase flow</li>
+            <li class="fragment visible">Interactive Components</li>
+          </ul>
+        </section>
+
+        <section data-background="#ddd6d0">
+          <h1>Avoiding Testing</h1>
+
+          <aside class="notes">
+            <p>Tests can be expensive to write and maintain, and can add to the friction of releasing a new feature. They should be created after weighing the benefits of the additional cost against the risk of a regression. To this end, we should consider how to avoid writing tests.</p>
+          </aside>
+        </section>
+
+        <section data-background="images/sand.jpeg">
+
+          <aside class="notes">
+            <p>One strategy, which we touched on earlier is to sandbox our components. This can be done with new technologies like React and web components. Although sandboxing all CSS removes some of the benefits of the cascade—used responsibly, it can be a powerful tool.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h1>Static Analysis</h1>
+          <ul>
+            <li class="fragment visible">CSS Lint</li>
+            <li class="fragment visible">Style Stats</li>
+          </ul>
+
+          <aside class="notes">
+            <p>Not all sites can use react—nor should they. But static analysis provides some strong alternatives by standardizing the CSS we write.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h1>Naming Philosophies</h1>
+          <ul>
+            <li class="fragment visible">Flat specificity frameworks</li>
+            <li class="fragment visible">OOCSS</li>
+            <li class="fragment visible">BEM</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Class Prefixes</h1>
+          <ul>
+            <li class="fragment visible"><code>.u-</code>: Utility</li>
+            <li class="fragment visible"><code>.js-</code>: JS hook</li>
+            <li class="fragment visible"><code>.qa-</code>: Test hook</li>
+            <li class="fragment visible"><code>._h-</code>: Hack</li>
+          </ul>
+
+          <aside class="notes">
+            <p>Further refinements to our class names come when we prefix them by functional type.</p>
+          </aside>
+        </section>
+
+        <section data-background="#ddd6d0">
+          <h1>Confident CSS</h1>
+
+          <aside class="notes">
+            <p>These tools give us a new 'C' in 'CSS'.</p>
+            <p>We've created a stronger architecture for our styles and our views.</p>
+            <p>This reinforces quality in our products—fewer breaks and less regression.</p>
+            <p>By enabling us to move forward with confidence and refactor our CSS, we create cleaner sites with lower latency.</p>
+          </aside>
+        </section>
+
+        <section class="title" data-background="images/niagera-water.jpg">
+          <h1>Testing the Cascade</h1>
+
+          <aside class="notes">
+            <p>This has been testing the cascade. We've got a few minutes for questions.</p>
+          </aside>
+        </section>
+
+        <section data-background="images/niagera-dry.jpg" data-background-transition="none">
+          <section class="title">
+          </section>
+
+          <section class="title u-nowrap">
+            <h4><span class="mask">Slides: github.com/honzie/testing-the-cascade</span></h4>
+            <p><span class="mask">github.com/BBC-News/wraith</span></p>
+            <p><span class="mask">github.com/jamesshore/quixote</span></p>
+            <p><span class="mask">github.com/honzie/cssu</span></p>
+            <p><span class="mask">csste.st/</span></p>
+          </section>
+        </section>
+      </div>
+
+    </div>
+  </body>
+</html>

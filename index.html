@@ -458,7 +458,7 @@
 
             <aside class="notes">
               <p>But how can we ensure the test only probes a 'unit' of code? CSS can be deep and complex.</p>
-              <p>We can render a page with only a block on it.</p>
+              <p>We can render a page with only a block on it. The buy box might seem too large, or too small. I think it's pretty goldilocks-sized.</p>
             </aside>
           </section>
 
@@ -482,6 +482,10 @@
 &lt;/html&gt;
 </pre>
             </code>
+
+            <aside class="notes">
+              <p>(Code walk: highlight necessity of tying together a block to its related stylesheets and scripts.)</p>
+            </aside>
           </section>
 
           <section>
@@ -514,6 +518,9 @@ var header = frame.get("#header");</span>
 });</span>
 </pre>
           </code>
+
+          <aside>
+          </aside>
         </section>
 
         <section>
@@ -524,10 +531,20 @@ var header = frame.get("#header");</span>
             <li class="fragment visible">CSS U</li>
             <li class="fragment visible">Selenium</li>
           </ul>
+
+          <aside class="notes">
+            <p>The majority of CSS testing tools seem to be built around unit testing. Quixote is the most fluid and powerful. It is the spiritual successor to Hardy. CSS U was what we did our first demo in and is written as an extremely lightweight tool specifically for this talk. And Selenium has built-in supprot for style testing.</p>
+            <p>The only CSS tests I've owned in production were in Selenium. It wasn't the most fun to write in, which hampered our adoption. Used to have a red and a green lava lamp. The green lit up when all tests failed. Bless Selenium. The red one was always on. Einstein's definition of insanity doesn't at all work for selenium.</p>
+          </aside>
         </section>
 
         <section data-background="#ddd6d0">
           <h1>Integration</h1>
+
+          <aside class="notes">
+            <p>Unit testing works in isolation and is good for test driven development (kidding). Most importantly, unit testing ensures our code meets our specs.</p>
+            <p>The tech behind unit testing—computing the properties of a rendered DOM can be leveraged for integration tests.</p>
+          </aside>
         </section>
 
         <section>
@@ -536,6 +553,10 @@ var header = frame.get("#header");</span>
         		<img src="images/aa-after.jpg" height="270">
         	</div>
           <p><small>www.fastcompany.com/1288618</small></p>
+
+          <aside class="notes">
+            <p>This is where integration testing hits its stride. In 2009, Dustin Curtis reimagined the American Airlines homepage and posted it on his blog. An American employee (think it was a senior UX designer) commented back that the homepage was the cummulative work of several dozen teams. That's a fairly massive integration.</p>
+          </aside>
         </section>
 
         <section>
@@ -554,6 +575,10 @@ var header = frame.get("#header");</span>
 &lt;/html&gt;
 </pre>
           </code>
+
+          <aside class="notes">
+            <p>Our first plan is to take the conjunction of our integration tests. This is straightforward, since HTML and CSS act globally.</p>
+          </aside>
         </section>
 
         <section>
@@ -570,20 +595,23 @@ var header = frame.get("#header");</span>
 	        <p><small>Photo By ori2uru</small></p>
 
           <aside class="notes">
-            <p>This is a technical explanation of how refactoring CSS works.</p>
-            <p>If everything is balanced correctly, the Dom will cascade from the top to the bottom.</p>
+            <p>Writing well-integrated CSS is like pouring champagne into a champagne tower and watching it cascade down to the bottom. The entire structure feels unstable. But it's so graceful.</p>
+            <p>Of course, since it's unstable, it's easy to knock down. That's when the party gets interesting, but you have to get more champagne saucers.</p>
           </aside>
         </section>
 
         <section data-background="#ddd6d0">
           <h1>Regression</h1>
+
+          <aside class="notes">
+            <p>This brings us to regression. Because the biggest fear in CSS is changing something.</p>
+          </aside>
         </section>
 
         <section data-background="images/tablecloth.jpeg">
 
           <aside class="notes">
-            <p>This is a technical explanation of how deploying CSS feels.</p>
-            <p>The flowers are still standing!</p>
+            <p>Deploying CSS feels like setting up a perfect spread on a table and then pulling out the tablecloth and seeing if the candles are still standing.</p>
           </aside>
         </section>
 
@@ -596,6 +624,10 @@ var header = frame.get("#header");</span>
               <li class="fragment visible">Display diff</li>
               <li class="fragment visible">Define new snapshot</li>
             </ul>
+
+            <aside class="notes">
+              <p>Regression testing follows a pattern. Define what things currently look like, see what the new version looks like, find the difference, and then declare the new snapshot to be proper if it looks like how we expect.</p>
+            </aside>
           </section>
 
           <section>
@@ -625,6 +657,10 @@ var header = frame.get("#header");</span>
                 </tr>
               </tbody>
             </table>
+
+            <aside class="notes">
+              <p>Earlier in the talk, when I showed this table, it was built off of a computed stylesheet for an entire DOM.</p>
+            </aside>
           </section>
 
           <section data-background="images/css-compute.png">
@@ -634,11 +670,19 @@ var header = frame.get("#header");</span>
             <h1>Hashed Output</h1>
             <p>1WjQjFEhaUrZQnduRU7HwgrP+61eVtQPCXF2QqTRvu8=</p>
             <p>MBnRDpjsEOHQIyp7dU6Bi9b1rd671RW7hr7jU9hWfhM=</p>
+
+            <aside class="notes">
+              <p>We can compute a hash based on the computed stylesheet. When these hashes are the same, no styles on the page were affected.
+            </aside>
           </section>
 
           <section>
             <h1>Output Diff</h1>
             <img src="images/diff.png" height="400">
+
+            <aside class="notes">
+              <p>And this allows us to view the difference between the computed stylesheets when there is a difference.</p>
+            </aside>
           </section>
         </section>
 
@@ -646,19 +690,35 @@ var header = frame.get("#header");</span>
           <h1>Image Diff</h1>
           <img src="images/spot-the-difference.png" height="360">
           <p><small>https://en.wikipedia.org/wiki/File:Spot_the_difference.png</small></p>
+
+          <aside class="notes">
+            <p>Hashing and comparing 20mb stylesheets can be slow, and the output is arcane. A better solution might come from the Sunday comics. Remember sitting on a carpet as a kid trying to find all the changes between two images?</p>
+          </aside>
         </section>
 
         <section>
           <section data-background="images/drive-side-by-side.png" class="contain">
+
+            <aside class="notes">
+              This is The Drive. It's a site my team owns about cars and car culture. On the left is the production version. On the right is a local version I was playing with. It has a different header.
+            </aside>
           </section>
 
           <section data-background="images/drive-diff-full.png" class="contain">
+
+            <aside class="notes">
+              By comparing these two sites, I can see—highlighted in blue—what my changes were. It's important that the content on the sites is the same.
+            </aside>
           </section>
         </section>
 
         <section>
           <h1>Wraith</h1>
           <p>github.com/BBC-News/wraith</p>
+
+          <aside class="notes">
+            The tool I'm using is called Wraith, and it was developed at the BBC.
+          </aside>
         </section>
 
         <section>
@@ -736,7 +796,7 @@ var header = frame.get("#header");</span>
           <ul>
             <li class="fragment visible"><code>.u-</code>: Utility</li>
             <li class="fragment visible"><code>.js-</code>: JS hook</li>
-            <li class="fragment visible"><code>.qa-</code>: QA or test hook</li>
+            <li class="fragment visible"><code>.qa-</code>: Test hook</li>
             <li class="fragment visible"><code>._h-</code>: Hack</li>
           </ul>
 
@@ -772,6 +832,7 @@ var header = frame.get("#header");</span>
 	        	<h4><span class="mask">Slides: github.com/honzie/testing-the-cascade</span></h4>
 	        	<p><span class="mask">github.com/BBC-News/wraith</span></p>
 	        	<p><span class="mask">github.com/jamesshore/quixote</span></p>
+            <p><span class="mask">github.com/honzie/cssu</span></p>
 	        	<p><span class="mask">csste.st/</span></p>
 	        </section>
         </section>

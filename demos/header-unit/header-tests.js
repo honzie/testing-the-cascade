@@ -13,6 +13,6 @@ cu.assert(
   header,
   {
     color: '#e47911',
-    fontFamily: 'helvetica, sans-serif',
-    fontSize: '48px'
+    fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+    fontSize: '36px'
   });

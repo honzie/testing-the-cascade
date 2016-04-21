@@ -32,6 +32,7 @@ paths:
 #  - 1280
 screen_widths:
   - 720x750
+  - 1200x750
 
 # (optional) JavaScript file to execute before taking screenshot of every path. Default: nil
 before_capture: 'javascript/disable_javascript--phantom.js'
